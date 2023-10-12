@@ -26,6 +26,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static("public"));
+app.route("/").get((req, res) => {
+  res.send("API Running!");
+});
 app.use("/api/articles", articleRoutes);
 
 app.use((req, res, next) => {
