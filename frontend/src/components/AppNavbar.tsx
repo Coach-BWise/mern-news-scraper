@@ -10,17 +10,17 @@ interface NavbarProps {
   scrapeOption: boolean;
 }
 
+const baseUrl = process.env.REACT_APP_BASE_API_ROOT_DIR
+  ? process.env.REACT_APP_BASE_API_ROOT_DIR
+  : "";
+
 const AppNavbar = ({ setArticles, scrapeOption }: NavbarProps) => {
   async function handleScrape() {
-    await axios.delete(
-      process.env.REACT_APP_BASE_API_ROOT_DIR + "/api/articles"
-    );
+    await axios.delete(baseUrl);
 
-    (await axios
-      .post(process.env.REACT_APP_BASE_API_ROOT_DIR + "/api/articles/scrape")
-      .then((response) => {
-        setArticles(response.data);
-      })) as ArticleModel[];
+    (await axios.post(baseUrl + "/scrape").then((response) => {
+      setArticles(response.data);
+    })) as ArticleModel[];
   }
 
   return (

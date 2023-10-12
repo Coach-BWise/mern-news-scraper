@@ -11,6 +11,10 @@ interface ArticleProps {
   refresh: () => void;
 }
 
+const baseUrl = process.env.REACT_APP_BASE_API_ROOT_DIR
+  ? process.env.REACT_APP_BASE_API_ROOT_DIR
+  : "";
+
 const Article = ({ article, page, refresh }: ArticleProps) => {
   const { _id, title, link, time, topic } = article;
   const tooltipBody = (
@@ -40,40 +44,33 @@ const Article = ({ article, page, refresh }: ArticleProps) => {
   }
 
   function saveArticle() {
-    axios
-      .patch(
-        `${process.env.REACT_APP_BASE_API_ROOT_DIR}/api/articles/${_id}`,
-        article
-      )
-      .then(() => {
-        refresh();
-        toast.success(`Article was Saved!`, {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: false,
-          progress: undefined,
-        });
+    axios.patch(`${baseUrl + "/" + _id}`, article).then(() => {
+      refresh();
+      toast.success(`Article was Saved!`, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
       });
+    });
   }
 
   function deleteArticle() {
-    axios
-      .delete(`${process.env.REACT_APP_BASE_API_ROOT_DIR}/api/articles/${_id}`)
-      .then(() => {
-        refresh();
-        toast.error(`Article was Deleted!`, {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: false,
-          progress: undefined,
-        });
+    axios.delete(`${baseUrl + "/" + _id}`).then(() => {
+      refresh();
+      toast.error(`Article was Deleted!`, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
       });
+    });
   }
 
   const [clicked, setClicked] = useState(getInitialState());

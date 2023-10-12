@@ -12,7 +12,7 @@ const SavedArticlesPage = () => {
   async function getArticles() {
     try {
       const response = await axios.get(
-        process.env.REACT_APP_BASE_API_ROOT_DIR + "/api/articles/true"
+        process.env.REACT_APP_BASE_API_ROOT_DIR + "/true"
       );
       const articles = response.data as ArticleModel[];
       setArticles(articles);
