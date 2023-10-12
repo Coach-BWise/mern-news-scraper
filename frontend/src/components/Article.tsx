@@ -41,7 +41,10 @@ const Article = ({ article, page, refresh }: ArticleProps) => {
 
   function saveArticle() {
     axios
-      .patch(`http://localhost:5000/api/articles/${_id}`, article)
+      .patch(
+        `${process.env.REACT_APP_BASE_API_ROOT_DIR}/api/articles/${_id}`,
+        article
+      )
       .then(() => {
         refresh();
         toast.success(`Article was Saved!`, {
@@ -57,18 +60,20 @@ const Article = ({ article, page, refresh }: ArticleProps) => {
   }
 
   function deleteArticle() {
-    axios.delete(`http://localhost:5000/api/articles/${_id}`).then(() => {
-      refresh();
-      toast.error(`Article was Deleted!`, {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
+    axios
+      .delete(`${process.env.REACT_APP_BASE_API_ROOT_DIR}/api/articles/${_id}`)
+      .then(() => {
+        refresh();
+        toast.error(`Article was Deleted!`, {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+        });
       });
-    });
   }
 
   const [clicked, setClicked] = useState(getInitialState());

@@ -11,8 +11,11 @@ const HomePage = () => {
 
   async function getArticles() {
     try {
+      console.log(
+        process.env.REACT_APP_BASE_API_ROOT_DIR + "/api/articles/false"
+      );
       const response = await axios.get(
-        "http://localhost:5000/api/articles/false"
+        process.env.REACT_APP_BASE_API_ROOT_DIR + "/api/articles/false"
       );
       const articles = response.data as ArticleModel[];
       setArticles(articles);
