@@ -17,7 +17,24 @@ const baseUrl = process.env.REACT_APP_BASE_API_ROOT_DIR
 
 const AppNavbar = ({ setArticles, scrapeOption }: NavbarProps) => {
   async function handleScrape() {
-    await axios.delete(baseUrl);
+    await toast.promise(
+      axios.post(baseUrl + "/scrape"),
+      {
+        pending:
+          "Clearing unsaved articles from Database to reload with Scraped Articles...",
+        success: "Database Cleared!",
+        error: "Error Occurred while trying to delete unsaved articles!",
+      },
+      {
+        position: "top-center",
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      }
+    );
+    axios.delete(baseUrl);
     let response = await toast.promise(
       axios.post(baseUrl + "/scrape"),
       {
