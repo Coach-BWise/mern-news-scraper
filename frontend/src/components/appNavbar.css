@@ -1,0 +1,11 @@
+.navbar-brand {
+    font-family: "Tangerine";
+    font-size: 30px;
+    color: deeppink;
+  }
+  .nav-link {
+    color: deeppink;
+}
+.nav-link:hover {
+    text-decoration: underline;
+}

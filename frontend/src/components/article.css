@@ -1,0 +1,11 @@
+.card{
+    display: flex;
+    box-shadow: 10px 10px 8px inset lightslategrey;
+}
+a {
+    margin: 0 5px;
+}
+i {
+    margin: 0 5px;
+}
+
