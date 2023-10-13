@@ -18,7 +18,7 @@ const baseUrl = process.env.REACT_APP_BASE_API_ROOT_DIR
 const AppNavbar = ({ setArticles, scrapeOption }: NavbarProps) => {
   async function handleScrape() {
     await toast.promise(
-      axios.post(baseUrl + "/scrape"),
+      axios.delete(baseUrl),
       {
         pending:
           "Clearing unsaved articles from Database to reload with Scraped Articles...",
@@ -34,7 +34,7 @@ const AppNavbar = ({ setArticles, scrapeOption }: NavbarProps) => {
         progress: undefined,
       }
     );
-    axios.delete(baseUrl);
+
     let response = await toast.promise(
       axios.post(baseUrl + "/scrape"),
       {
