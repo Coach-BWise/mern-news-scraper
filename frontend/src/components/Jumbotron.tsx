@@ -1,4 +1,3 @@
-import Col from "react-bootstrap/Col";
 import "./jumbotron.css";
 const Jumbotron = () => {
   return (

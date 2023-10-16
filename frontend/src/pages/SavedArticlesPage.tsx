@@ -27,7 +27,7 @@ const SavedArticlesPage = () => {
 
   return (
     <Container>
-      <AppNavbar setArticles={setArticles} scrapeOption={false} />
+      <AppNavbar setArticles={setArticles} />
       <Jumbotron />
       {articles.length > 0 && (
         <Row xs={1} md={2} lg={3} className="g-4 mt-1">

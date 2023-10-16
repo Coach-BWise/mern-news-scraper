@@ -8,32 +8,35 @@ import { toast } from "react-toastify";
 
 interface NavbarProps {
   setArticles: React.Dispatch<React.SetStateAction<ArticleModel[]>>;
-  scrapeOption: boolean;
+  scrapeOption?: boolean;
+  articles?: ArticleModel[];
 }
 
 const baseUrl = process.env.REACT_APP_BASE_API_ROOT_DIR
   ? process.env.REACT_APP_BASE_API_ROOT_DIR
   : "";
 
-const AppNavbar = ({ setArticles, scrapeOption }: NavbarProps) => {
+const AppNavbar = ({ setArticles, scrapeOption, articles }: NavbarProps) => {
   async function handleScrape() {
-    await toast.promise(
-      axios.delete(baseUrl),
-      {
-        pending:
-          "Clearing unsaved articles from Database to reload with Scraped Articles...",
-        success: "Database Cleared!",
-        error: "Error Occurred while trying to delete unsaved articles!",
-      },
-      {
-        position: "top-center",
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-      }
-    );
+    if (articles && articles.length > 0) {
+      await toast.promise(
+        axios.delete(baseUrl),
+        {
+          pending:
+            "Clearing unsaved articles from Database to reload with Scraped Articles...",
+          success: "Database Cleared!",
+          error: "Error Occurred while trying to delete unsaved articles!",
+        },
+        {
+          position: "top-center",
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+        }
+      );
+    }
 
     let response = await toast.promise(
       axios.post(baseUrl + "/scrape"),

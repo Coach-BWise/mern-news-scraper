@@ -28,7 +28,11 @@ const HomePage = () => {
 
   return (
     <Container>
-      <AppNavbar setArticles={setArticles} scrapeOption={true} />
+      <AppNavbar
+        setArticles={setArticles}
+        scrapeOption={true}
+        articles={articles}
+      />
       <Jumbotron />
       {articles.length > 0 && (
         <Row xs={1} md={2} lg={3} className="g-4 mt-1">
