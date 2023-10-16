@@ -5,6 +5,7 @@ import Article from "../components/Article";
 import AppNavbar from "../components/AppNavbar";
 import Jumbotron from "../components/Jumbotron";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const HomePage = () => {
   const [articles, setArticles] = useState<ArticleModel[]>([]);
@@ -23,7 +24,22 @@ const HomePage = () => {
   }
 
   useEffect(() => {
-    getArticles();
+    toast.promise(
+      getArticles(),
+      {
+        pending: "Grabbing Articles from DB...",
+        success: "Articles Loaded!",
+        error: "Error Occurred while trying to get articles!",
+      },
+      {
+        position: "top-center",
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      }
+    );
   }, []);
 
   return (
