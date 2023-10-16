@@ -4,7 +4,7 @@ This Project scrapes the Tampa Bay Times webpage for current events and displays
 
 ## Getting Started
 
-[Click Here](google.com) to open app. (not yet deployed)
+[Click Here](https://mern-web-scraper-client.onrender.com) to open app. 
 
 If no articles are displayed Scrape for them.
 
